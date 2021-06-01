@@ -2,6 +2,10 @@ const express = require('express');
 
 const app = express();
 
+const { mongoDbString } = require('./config/config');
+
+// console.log(' mongoDbString', mongoDbString);
+
 app.set('view engine', 'ejs');
 app.set('views', 'src/views');
 

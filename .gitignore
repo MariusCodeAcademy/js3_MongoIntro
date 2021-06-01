@@ -102,3 +102,6 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Mongo db access string with pass and username
+src/config/config.js
