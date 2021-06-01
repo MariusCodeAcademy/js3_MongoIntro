@@ -22,14 +22,27 @@ mongoose
 
 app.get('/', (req, res) => res.render('index'));
 
+app.get('/posts', (req, res) => {
+  // get all posts
+  Post.find()
+    .then((result) => {
+      console.log(' result', result);
+      res.send(result);
+    })
+    .catch((err) => console.error(err.message));
+});
+
+// create new post
 app.get('/add-post', (req, res) => {
   // sukuriam nauja posta pagal schemoje aprasyta modeli
   const newPost = new Post({
-    title: 'Shark atack',
+    title: '3000 leagues unders sea',
     author: 'Jaike Swim',
     body: 'Mongo db is an easy way to db. and......',
   });
   // issaugoti duomenu bazeje naudojam .save()
-  newPost.save();
-  res.send('all good, maybe');
+  newPost
+    .save()
+    .then((result) => res.send(result))
+    .catch((err) => console.error(err.message));
 });
