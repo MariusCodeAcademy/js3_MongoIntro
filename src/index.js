@@ -32,6 +32,13 @@ app.get('/posts', (req, res) => {
     .catch((err) => console.error(err.message));
 });
 
+app.get('/single-post', (req, res) => {
+  const id = '60b60683a7092f710c4b2850';
+  Post.findById(id)
+    .then((result) => res.json(result))
+    .catch((err) => console.error(err.message));
+});
+
 // create new post
 app.get('/add-post', (req, res) => {
   // sukuriam nauja posta pagal schemoje aprasyta modeli
