@@ -35,7 +35,7 @@ app.get('/posts', (req, res) => {
 app.get('/single-post', (req, res) => {
   const id = '60b60683a7092f710c4b2850';
   Post.findById(id)
-    .then((result) => res.json(result))
+    .then((result) => res.render('single', result))
     .catch((err) => console.error(err.message));
 });
 
