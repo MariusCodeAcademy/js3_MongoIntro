@@ -7,7 +7,7 @@ const { mongoDbString } = require('./config/config');
 
 // console.log(' mongoDbString', mongoDbString);
 // prisijungimas prie duomenu bazes
-mongoose.connect(mongoDbString);
+mongoose.connect(mongoDbString, { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.set('view engine', 'ejs');
 app.set('views', 'src/views');
