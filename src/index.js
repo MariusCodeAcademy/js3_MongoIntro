@@ -5,13 +5,31 @@ const mongoose = require('mongoose');
 
 const { mongoDbString } = require('./config/config');
 
-// console.log(' mongoDbString', mongoDbString);
-// prisijungimas prie duomenu bazes
-mongoose.connect(mongoDbString, { useNewUrlParser: true, useUnifiedTopology: true });
+const Post = require('./models/post');
 
 app.set('view engine', 'ejs');
 app.set('views', 'src/views');
 
-app.listen(3000);
+// console.log(' mongoDbString', mongoDbString);
+// prisijungimas prie duomenu bazes
+mongoose
+  .connect(mongoDbString, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then((result) => {
+    console.log('Conneced to Mongo ooooooooose');
+    app.listen(3000);
+  })
+  .catch((err) => console.error(err.message));
 
 app.get('/', (req, res) => res.render('index'));
+
+app.get('/add-post', (req, res) => {
+  // sukuriam nauja posta pagal schemoje aprasyta modeli
+  const newPost = new Post({
+    title: 'Shark atack',
+    author: 'Jaike Swim',
+    body: 'Mongo db is an easy way to db. and......',
+  });
+  // issaugoti duomenu bazeje naudojam .save()
+  newPost.save();
+  res.send('all good, maybe');
+});
